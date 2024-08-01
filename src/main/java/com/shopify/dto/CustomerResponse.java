@@ -21,11 +21,5 @@ public class CustomerResponse {
     private boolean loggedIn;
     private List<CustomerTransaction> transactions;
 
-    public CustomerResponse(Long id, String name, String email, List<CustomerTransaction> transactions, boolean loggedIn) {
-        this.id=id;
-        this.name=name;
-        this.email=email;
-        this.transactions=transactions;
-        this.loggedIn=loggedIn;
     }
-}
+

@@ -53,6 +53,14 @@ public class dummyDataLoad {
             transaction1.setDate(Date.from(LocalDate.of(2024, Month.JANUARY, 10).atStartOfDay(ZoneId.systemDefault()).toInstant()));
             transactionRepository.save(transaction1);
 
+
+            CustomerTransaction transaction21 = new CustomerTransaction();
+            transaction21.setCustomer(customer1);
+            transaction21.setSpentDetails("Purchase 11");
+            transaction21.setAmount(120.0);
+            transaction21.setDate(Date.from(LocalDate.of(2024, Month.JANUARY, 11).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            transactionRepository.save(transaction21);
+
             CustomerTransaction transaction2 = new CustomerTransaction();
             transaction2.setCustomer(customer1);
             transaction2.setSpentDetails("Purchase 2");

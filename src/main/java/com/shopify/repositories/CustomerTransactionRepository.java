@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface CustomerTransactionRepository extends JpaRepository<CustomerTransaction, Long> {
     List<CustomerTransaction> findByCustomer(Customer customer);
+
+    List<CustomerTransaction> findByCustomerId(Long customerId);
 }

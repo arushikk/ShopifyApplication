@@ -25,6 +25,11 @@ public class RewardsController {
     public ResponseEntity<?> getTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId){
         return ResponseEntity.ok(rewardPointsService.getTotalRewardsOfCustomer(customerId));
     }
+    @GetMapping("/customer/summary/{id}")
+    public ResponseEntity<?> getMonthlyAndTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId){
+        return ResponseEntity.ok(rewardPointsService.getRewardPointsPerMonthAndTotalByCustID(customerId));
+    }
+
 
     @GetMapping("/monthly")
     public ResponseEntity<Map<Long, Map<Month, Integer>>> getMonthlyRewardPoints() {
@@ -35,6 +40,8 @@ public class RewardsController {
     public ResponseEntity<Map<Long, Integer>> getTotalRewardPoints() {
         return ResponseEntity.ok(rewardPointsService.getTotalRewardPoints());
     }
+
+
 
 
 }

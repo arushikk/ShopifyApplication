@@ -17,7 +17,6 @@ public class CustomerTransaction {
     @JoinColumn(name = "customer_id")
     @JsonIgnore
     private Customer  customer;
-
     private String spentDetails;
     private Double amount;
     private Date date;

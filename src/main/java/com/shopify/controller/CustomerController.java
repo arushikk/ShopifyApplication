@@ -29,8 +29,8 @@ public class CustomerController {
         Optional<Customer> customer = customerService.login(loginRequest.getEmail(), loginRequest.getPassword());
 
         if (customer.isPresent()) {
-            return ResponseEntity.ok(new CustomerResponse( customer.get().getId() ,customer.get().getName(), customer.get().getEmail(), customer.get().getTransactions()
-            ,customer.get().isLoggedIn() ));
+            return ResponseEntity.ok(new CustomerResponse( customer.get().getId() ,customer.get().getName(), customer.get().getEmail()
+            ,customer.get().isLoggedIn(), customer.get().getTransactions() ));
         } else {
             return ResponseEntity.status(401).body("Invalid email or password");
         }
