@@ -1,4 +1,5 @@
 package com.shopify.config;
+
 import com.shopify.entities.Customer;
 import com.shopify.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (customer == null) {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
-        return User.builder()
-                .username(customer.getEmail())
-                .password(customer.getPassword())
-                .roles("USER")
-                .build();
+        return User.builder().username(customer.getEmail()).password(customer.getPassword()).roles("USER").build();
     }
 }
 

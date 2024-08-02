@@ -4,6 +4,7 @@ package com.shopify.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class CustomerTransaction {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     @JsonIgnore
-    private Customer  customer;
+    private Customer customer;
     private String spentDetails;
     private Double amount;
     private Date date;

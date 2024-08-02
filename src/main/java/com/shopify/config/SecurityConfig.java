@@ -1,4 +1,5 @@
 package com.shopify.config;
+
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,22 +24,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/customers/**","/rewards/**","/transactions/**" ,"swagger.json/**","/swagger-ui/**",
-                                "v3/api-docs/**","/swagger-ui-custom.html","/swagger-ui.html").permitAll()
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authorize -> authorize.requestMatchers("/customers/**", "/rewards/**", "/transactions/**", "swagger.json/**", "/swagger-ui/**", "v3/api-docs/**", "/swagger-ui-custom.html", "/swagger-ui.html").permitAll()
 
-                     //   .requestMatchers("/rewards/total").authenticated()
-                        .anyRequest().authenticated()
-                )
-        .sessionManagement(sessionManagement ->
-                sessionManagement
-                        .maximumSessions(1)
-        );
+                //   .requestMatchers("/rewards/total").authenticated()
+                .anyRequest().authenticated()).sessionManagement(sessionManagement -> sessionManagement.maximumSessions(1));
 
 
-      //  http.addFilterBefore(loggedInFilter, UsernamePasswordAuthenticationFilter.class);
+        //  http.addFilterBefore(loggedInFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

@@ -21,5 +21,5 @@ public class CustomerResponse {
     private boolean loggedIn;
     private List<CustomerTransaction> transactions;
 
-    }
+}
 

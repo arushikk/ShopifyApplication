@@ -15,18 +15,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("/rewards")
 @Tag(name = "Reward Points", description = "APIs for managing reward points")
-public class RewardsController {
+public class RewardPointsController {
 
     @Autowired
     private RewardPointsService rewardPointsService;
 
 
     @GetMapping("/customer/{id}")
-    public ResponseEntity<?> getTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId){
+    public ResponseEntity<?> getTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId) {
         return ResponseEntity.ok(rewardPointsService.getTotalRewardsOfCustomer(customerId));
     }
+
     @GetMapping("/customer/summary/{id}")
-    public ResponseEntity<?> getMonthlyAndTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId){
+    public ResponseEntity<?> getMonthlyAndTotalRewardPointsByCustomerId(@PathVariable("id") Long customerId) {
         return ResponseEntity.ok(rewardPointsService.getRewardPointsPerMonthAndTotalByCustID(customerId));
     }
 
@@ -40,8 +41,6 @@ public class RewardsController {
     public ResponseEntity<Map<Long, Integer>> getTotalRewardPoints() {
         return ResponseEntity.ok(rewardPointsService.getTotalRewardPoints());
     }
-
-
 
 
 }

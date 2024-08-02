@@ -23,8 +23,7 @@ public class LoggedInFilter extends OncePerRequestFilter {
     private CustomerRepository customerRepository;
 
 
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if (request.getRequestURI().equals("/rewards/total")) {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (principal instanceof UserDetails) {
@@ -34,8 +33,7 @@ public class LoggedInFilter extends OncePerRequestFilter {
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     response.getWriter().write("You must be logged in to access this resource");
                     return;
-                }
-                else {
+                } else {
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     response.getWriter().write("You must be logged in to access this resource");
                     return;
@@ -44,7 +42,6 @@ public class LoggedInFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
 
 
 }

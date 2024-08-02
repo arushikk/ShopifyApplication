@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class TransactionController {
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<CustomerTransaction>> getTransactions(@PathVariable Long customerId) {
-        return ResponseEntity.ok(customerTransactionService.getTransactions(customerId) );
+        return ResponseEntity.ok(customerTransactionService.getTransactions(customerId));
     }
 
     @PostMapping("/customer/{customerId}")
@@ -37,7 +38,7 @@ public class TransactionController {
     @DeleteMapping("/{transactionId}")
     public ResponseEntity<String> deleteTransaction(@PathVariable Long transactionId) {
         customerTransactionService.deleteTransaction(transactionId);
-        return ResponseEntity.ok(String.format("%d deleted successfully",transactionId));
+        return ResponseEntity.ok(String.format("%d deleted successfully", transactionId));
     }
 }
 

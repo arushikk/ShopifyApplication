@@ -1,7 +1,6 @@
 package com.shopify.exceptions;
 
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +12,8 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> ResourceNotFoundException(ResourceNotFoundException ex ){
-        String message= ex.getMessage();
-        return new ResponseEntity<>(message , HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> ResourceNotFoundException(ResourceNotFoundException ex) {
+        String message = ex.getMessage();
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 }

@@ -5,6 +5,7 @@ import com.shopify.exceptions.ResourceNotFoundException;
 import com.shopify.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -29,16 +30,14 @@ public class CustomerService {
 
     public void logout(Long customerId) {
         Optional<Customer> customer = customerRepository.findById(customerId);
-        if(customer.isPresent()){
+        if (customer.isPresent()) {
             customer.get().setLoggedIn(false);
             customerRepository.save(customer.get());
 
+        } else {
+
+            throw new ResourceNotFoundException("Customer", "CustomerId", customerId);
         }
-        else {
-
-                throw new ResourceNotFoundException("Customer", "CustomerId", customerId);
-            }
-
 
 
     }

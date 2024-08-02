@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class RewardPointsService {
 
     @Value("${rewardPoints.above50}")
-    public int x50 ;
+    public int x50;
 
     @Value("${rewardPoints.above100}")
     public int x100;
@@ -34,43 +34,44 @@ public class RewardPointsService {
             amount = 100;
         }
         if (amount > 50) {
-            points += (amount - 50)* x50;
+            points += (amount - 50) * x50;
         }
         return points;
     }
 
 
-    public int getTotalRewardsOfCustomer(Long customerId){
-        List< CustomerTransaction> transactions =customerTransactionRepository.findAll();
+    public int getTotalRewardsOfCustomer(Long customerId) {
+        List<CustomerTransaction> transactions = customerTransactionRepository.findAll();
         int total = 0;
-        for(CustomerTransaction transaction :transactions){
-            if(transaction.getCustomer().getId()==customerId)
-                total+= calculatePoints(transaction.getAmount());
+        for (CustomerTransaction transaction : transactions) {
+            if (transaction.getCustomer().getId() == customerId)
+                total += calculatePoints(transaction.getAmount());
         }
 
         return total;
     }
-    public  Map<String, Integer> getRewardPointsPerMonthAndTotalByCustID(Long customerId) {
+
+    public Map<String, Integer> getRewardPointsPerMonthAndTotalByCustID(Long customerId) {
         List<CustomerTransaction> transactions = customerTransactionRepository.findByCustomerId(customerId);
-        if(transactions.size()==0) throw new ResourceNotFoundException("Customer" , "CustomerId" , customerId);
+        if (transactions.size() == 0) throw new ResourceNotFoundException("Customer", "CustomerId", customerId);
         Map<String, Integer> pointsPerMonth = new HashMap<>();
-        int total =0 ;
+        int total = 0;
 
         for (CustomerTransaction transaction : transactions) {
 
             LocalDate localDate = transaction.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Month month = localDate.getMonth();
             int points = calculatePoints(transaction.getAmount());
-            total+= points;
-            pointsPerMonth.put(month.toString() , pointsPerMonth.getOrDefault(month.toString() , 0)+ points);
+            total += points;
+            pointsPerMonth.put(month.toString(), pointsPerMonth.getOrDefault(month.toString(), 0) + points);
         }
 
-        pointsPerMonth.put("Total reward points of three months" , total);
+        pointsPerMonth.put("Total reward points of three months", total);
 
         return pointsPerMonth;
     }
 
-     public Map<Long, Map<Month, Integer>> getRewardPointsPerMonth() {
+    public Map<Long, Map<Month, Integer>> getRewardPointsPerMonth() {
         List<CustomerTransaction> transactions = customerTransactionRepository.findAll();
         Map<Long, Map<Month, Integer>> pointsPerMonth = new HashMap<>();
 
