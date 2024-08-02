@@ -27,26 +27,6 @@
 			"response": []
 		},
 		{
-			"name": "GetMonthlyRewardPoints Copy",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/rewards/monthly",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"rewards",
-						"monthly"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "GetTotalRewardPoints",
 			"request": {
 				"method": "GET",
@@ -67,12 +47,12 @@
 			"response": []
 		},
 		{
-			"name": "GetTotalRewardsbyCustomerId",
+			"name": "RewardsSummaryByCustomerId",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/rewards/monthly",
+					"raw": "http://localhost:8080/rewards/customer/summary/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,7 +60,9 @@
 					"port": "8080",
 					"path": [
 						"rewards",
-						"monthly"
+						"customer",
+						"summary",
+						"1"
 					]
 				}
 			},
